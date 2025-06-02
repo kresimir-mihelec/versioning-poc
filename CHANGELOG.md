@@ -1,3 +1,15 @@
+# [1.1.0](https://github.com/kresimir-mihelec/versioning-poc/compare/v1.0.0...v1.1.0) (2025-06-02)
+
+
+### Bug Fixes
+
+* Fix broken url ([5103fe7](https://github.com/kresimir-mihelec/versioning-poc/commit/5103fe7bb029c8977acd74b1ab6b17624d2b70e6))
+
+
+### Features
+
+* Show version in footer ([#2](https://github.com/kresimir-mihelec/versioning-poc/issues/2)) ([2128ea2](https://github.com/kresimir-mihelec/versioning-poc/commit/2128ea255e98875eacca31163320250a47f655fa))
+
 # [1.1.0-stage.3](https://github.com/kresimir-mihelec/versioning-poc/compare/v1.1.0-stage.2...v1.1.0-stage.3) (2025-06-02)
 
 

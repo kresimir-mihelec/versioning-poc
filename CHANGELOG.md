@@ -1,3 +1,10 @@
+# [1.1.0-stage.3](https://github.com/kresimir-mihelec/versioning-poc/compare/v1.1.0-stage.2...v1.1.0-stage.3) (2025-06-02)
+
+
+### Bug Fixes
+
+* Update link ([2a914ff](https://github.com/kresimir-mihelec/versioning-poc/commit/2a914ff1b8126281a49388753fe802e8a59df1c3))
+
 # [1.1.0-stage.2](https://github.com/kresimir-mihelec/versioning-poc/compare/v1.1.0-stage.1...v1.1.0-stage.2) (2025-06-02)
 
 

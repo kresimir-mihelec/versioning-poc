@@ -15,8 +15,11 @@ export default async function HomePage() {
 
   const fileURL = `vscode://file/${fileURLToPath(import.meta.url)}`
 
+  const appVersion = process.env.APP_VERSION
+
   return (
     <div className="home">
+      <header>Header</header>
       <div className="content">
         <picture>
           <source srcSet="https://raw.githubusercontent.com/payloadcms/payload/main/packages/ui/src/assets/payload-favicon.svg" />
@@ -38,12 +41,7 @@ export default async function HomePage() {
           >
             Go to admin panel
           </a>
-          <a
-            className="docs"
-            href="https://payloadcms.com/docs"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
+          <a className="docs" href="https://payloadcms.c" rel="noopener noreferrer" target="_blank">
             Documentation
           </a>
         </div>
@@ -53,6 +51,7 @@ export default async function HomePage() {
         <a className="codeLink" href={fileURL}>
           <code>app/(frontend)/page.tsx</code>
         </a>
+        <p>Version: {appVersion}</p>
       </div>
     </div>
   )

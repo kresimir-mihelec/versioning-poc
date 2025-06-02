@@ -15,6 +15,8 @@ export default async function HomePage() {
 
   const fileURL = `vscode://file/${fileURLToPath(import.meta.url)}`
 
+  const appVersion = process.env.APP_VERSION
+
   return (
     <div className="home">
       <div className="content">
@@ -53,6 +55,7 @@ export default async function HomePage() {
         <a className="codeLink" href={fileURL}>
           <code>app/(frontend)/page.tsx</code>
         </a>
+        <p>Version: {appVersion}</p>
       </div>
     </div>
   )

@@ -19,6 +19,7 @@ export default async function HomePage() {
 
   return (
     <div className="home">
+      <header>Header</header>
       <div className="content">
         <picture>
           <source srcSet="https://raw.githubusercontent.com/payloadcms/payload/main/packages/ui/src/assets/payload-favicon.svg" />

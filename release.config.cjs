@@ -1,3 +1,17 @@
+// release.config.js
+const currentBranch = process.env.GITHUB_REF_NAME // GitHub Actions environment variable for branch name
+
+let changelogFile = 'CHANGELOG.md' // Default for main
+let assetsToCommit = ['CHANGELOG.md', 'package.json', 'package-lock.json'] // Default for main
+
+if (currentBranch === 'development') {
+  changelogFile = 'CHANGELOG-dev.md'
+  assetsToCommit = ['CHANGELOG-dev.md'] // Only commit dev changelog, not package.json
+} else if (currentBranch === 'staging') {
+  changelogFile = 'CHANGELOG-staging.md'
+  assetsToCommit = ['CHANGELOG-staging.md'] // Only commit staging changelog, not package.json
+}
+
 module.exports = {
   branches: [
     'main',
@@ -18,7 +32,7 @@ module.exports = {
     [
       '@semantic-release/changelog',
       {
-        changelogFile: 'CHANGELOG.md',
+        changelogFile: changelogFile,
       },
     ],
     [
@@ -30,7 +44,7 @@ module.exports = {
     [
       '@semantic-release/git',
       {
-        assets: ['CHANGELOG.md', 'package.json', 'package-lock.json'],
+        assets: assetsToCommit,
         message: 'chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}',
       },
     ],

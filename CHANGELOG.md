@@ -1,3 +1,10 @@
+# [1.1.0-stage.2](https://github.com/kresimir-mihelec/versioning-poc/compare/v1.1.0-stage.1...v1.1.0-stage.2) (2025-06-02)
+
+
+### Features
+
+* Add header ([06eeb91](https://github.com/kresimir-mihelec/versioning-poc/commit/06eeb915c4376afa8f05fb6fc1895eca199de474))
+
 # [1.1.0-stage.1](https://github.com/kresimir-mihelec/versioning-poc/compare/v1.0.0...v1.1.0-stage.1) (2025-06-02)
 
 

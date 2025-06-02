@@ -17,9 +17,10 @@ jobs:
       issues: write            # To comment on issues linked to commits
       pull-requests: write     # To comment on PRs linked to commits
       # packages: write        # If publishing to GitHub Packages (needed by @semantic-release/github if it tries this)
-    # outputs: # Outputs are less critical if no subsequent deploy jobs in this POC
-      # new_release_published: ${{ steps.semantic.outputs.new_release_published }}
-      # new_release_version: ${{ steps.semantic.outputs.new_release_version }}
+    outputs:
+      new_release_published: ${{ steps.semantic.outputs.new_release_published }}
+      new_release_version: ${{ steps.semantic.outputs.new_release_version }}
+      branch_changelog: ${{ steps.vars.outputs.changelog_file }} # Path to the relevant changelog
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -39,4 +40,54 @@ jobs:
         id: semantic # Give the step an ID if you were to use its outputs
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REF_NAME: ${{ github.ref_name }} # Used by release.config.js
         run: npx semantic-release
+
+  build_poc:
+    name: POC Build Step
+    needs: release # Runs after the 'release' job completes
+    runs-on: ubuntu-latest
+    # This job now runs on every push to the configured branches, after 'release' job.
+    # The 'if' condition that checked for new_release_published has been removed.
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          # Checkout the specific branch. If semantic-release pushed changes (e.g., new changelog file),
+          # this checkout will get the latest commit on the branch.
+          ref: ${{ github.ref_name }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Log version and changelog information (POC)
+        env:
+          NEW_RELEASE_PUBLISHED: ${{ needs.release.outputs.new_release_published }}
+          NEW_RELEASE_VERSION: ${{ needs.release.outputs.new_release_version }}
+          BRANCH_CHANGELOG: ${{ needs.release.outputs.branch_changelog }}
+        run: |
+          echo "Current branch: ${{ github.ref_name }}"
+          echo "New release published by semantic-release: $NEW_RELEASE_PUBLISHED"
+          
+          if [[ "$NEW_RELEASE_PUBLISHED" == "true" ]]; then
+            echo "The new version is: $NEW_RELEASE_VERSION"
+            echo "Changelog file updated: $BRANCH_CHANGELOG"
+            echo "--- In a real build (with new version) ---"
+            echo "Build command would be: APP_VERSION=$NEW_RELEASE_VERSION npm run build"
+          else
+            echo "No new version was published by semantic-release (e.g., only style/refactor commits)."
+            echo "This build is for commit: ${{ github.sha }}"
+            echo "Current package.json version in this checkout: $(node -p "require('./package.json').version")"
+            echo "--- In a real build (no new version) ---"
+            VERSION_TO_BUILD=$(node -p "require('./package.json').version")
+            if [[ "${{ github.ref_name }}" == "development" || "${{ github.ref_name }}" == "staging" ]]; then
+              VERSION_TO_BUILD="$VERSION_TO_BUILD-commit-$(echo ${{ github.sha }} | cut -c1-7)"
+            fi
+            echo "Build command could be: APP_VERSION=$VERSION_TO_BUILD npm run build"
+          fi

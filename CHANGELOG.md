@@ -1,3 +1,10 @@
+# [1.1.0-stage.4](https://github.com/kresimir-mihelec/versioning-poc/compare/v1.1.0-stage.3...v1.1.0-stage.4) (2025-06-02)
+
+
+### Features
+
+* Show version in footer ([#2](https://github.com/kresimir-mihelec/versioning-poc/issues/2)) ([2128ea2](https://github.com/kresimir-mihelec/versioning-poc/commit/2128ea255e98875eacca31163320250a47f655fa))
+
 # [1.1.0-stage.3](https://github.com/kresimir-mihelec/versioning-poc/compare/v1.1.0-stage.2...v1.1.0-stage.3) (2025-06-02)
 
 

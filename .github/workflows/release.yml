@@ -39,5 +39,4 @@ jobs:
         id: semantic # Give the step an ID if you were to use its outputs
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          DEBUG: "semantic-release:*,@semantic-release/*"
         run: npx semantic-release

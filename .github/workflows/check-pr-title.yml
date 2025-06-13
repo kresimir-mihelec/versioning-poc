@@ -1,0 +1,19 @@
+name: PR-title lint
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize, reopened]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Enforce Conventional-Commit prefix
+        env:
+          TITLE: ${{ github.event.pull_request.title }}
+        run: |
+          echo "PR title: '$TITLE'"
+          if [[ ! "$TITLE" =~ ^(build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test)(\([^)]+\))?:\ .+ ]]; then
+            echo "::error ::Title must start with a Conventional-Commit prefix"
+            exit 1
+          fi

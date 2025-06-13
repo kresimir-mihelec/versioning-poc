@@ -1,0 +1,35 @@
+name: Sync main → staging → development
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    permissions: { contents: write }
+
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+
+      - name: Fast-forward downstream branches
+        env: { GH_TOKEN: ${{ secrets.GITHUB_TOKEN }} }
+        run: |
+          git config user.name  sync-bot
+          git config user.email sync-bot@users.noreply.github.com
+
+          for target in staging development; do
+            if git ls-remote --exit-code --heads origin $target >/dev/null; then
+              git fetch origin $target
+              git checkout $target
+              if git merge --ff-only origin/main; then
+                git push origin HEAD:$target
+              else
+                echo "::warning ::Cannot fast-forward $target – opening PR"
+                gh pr create --base $target --head main \
+                  --title "Sync main → $target" \
+                  --body  "Auto-PR: resolve conflicts then merge."
+              fi
+            fi
+          done

@@ -1,3 +1,10 @@
+# [2.0.0-stage.2](https://github.com/kresimir-mihelec/versioning-poc/compare/v2.0.0-stage.1...v2.0.0-stage.2) (2025-06-16)
+
+
+### Features
+
+* Add about us page ([f3e13aa](https://github.com/kresimir-mihelec/versioning-poc/commit/f3e13aaff4dd84acd6302a0ac3cacff60503c371))
+
 # [2.0.0-stage.1](https://github.com/kresimir-mihelec/versioning-poc/compare/v1.2.0...v2.0.0-stage.1) (2025-06-16)
 
 

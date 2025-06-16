@@ -33,6 +33,10 @@ export default async function HomePage() {
         <p>Update this page by editing</p>
         <p>Version: {appVersion}</p>
       </div>
+      <div className="footer">
+        <p>Whatever</p>
+        <p>Version: {appVersion}</p>
+      </div>
     </div>
   )
 }

@@ -1,4 +1,11 @@
-# [2.0.0-stage.3](https://github.com/kresimir-mihelec/versioning-poc/compare/v2.0.0-stage.2...v2.0.0-stage.3) (2025-06-16)
+## [2.0.1](https://github.com/kresimir-mihelec/versioning-poc/compare/v2.0.0...v2.0.1) (2025-06-16)
+
+
+### Bug Fixes
+
+* **ci:** Fix branch sync ([d589ed0](https://github.com/kresimir-mihelec/versioning-poc/commit/d589ed0326ecde453bf21e91169eab0d7f6e82be))
+
+# [2.0.0](https://github.com/kresimir-mihelec/versioning-poc/compare/v1.2.0...v2.0.0) (2025-06-16)
 
 
 ### Features

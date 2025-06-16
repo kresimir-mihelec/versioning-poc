@@ -10,32 +10,37 @@ jobs:
     runs-on: ubuntu-latest
 
     permissions:
-      contents: write       # <- use block mapping, not { contents: write }
+      contents: write
+      pull-requests: write      # ← needed to open a PR via API
 
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 0     # <- same here; no braces
+          fetch-depth: 0
+          ref: main              # start the repo on main
 
       - name: Fast-forward downstream branches
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}   # gh will pick this up
         run: |
+          set -e
           git config user.name  sync-bot
           git config user.email sync-bot@users.noreply.github.com
 
           for target in staging development; do
-            if git ls-remote --exit-code --heads origin $target >/dev/null; then
-              git fetch origin $target
-              git checkout $target
+            if git ls-remote --exit-code --heads origin "$target" >/dev/null; then
+              git fetch origin "$target"
+              git checkout "$target"
+
               if git merge --ff-only origin/main; then
-                git push origin HEAD:$target
+                git push origin HEAD:"$target"
               else
                 echo "::warning ::Cannot fast-forward $target – opening PR"
-                gh pr create --base $target --head main \
+                gh pr create \
+                  -B "$target" \
+                  -H main \
                   --title "Sync main → $target" \
-                  --body  "Auto-PR: resolve conflicts then merge."
+                  --body  "Auto-PR: fast-forward failed; please resolve conflicts then merge."
               fi
             fi
           done

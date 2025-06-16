@@ -1,3 +1,15 @@
+# [2.0.0-stage.1](https://github.com/kresimir-mihelec/versioning-poc/compare/v1.2.0...v2.0.0-stage.1) (2025-06-16)
+
+
+### Features
+
+* **ci:** Add build step ([69c2f25](https://github.com/kresimir-mihelec/versioning-poc/commit/69c2f25c1044fcf425575f852ae1a9fc8192043d))
+
+
+### BREAKING CHANGES
+
+* **ci:** breaking change test
+
 # [1.2.0](https://github.com/kresimir-mihelec/versioning-poc/compare/v1.1.0...v1.2.0) (2025-06-16)
 
 

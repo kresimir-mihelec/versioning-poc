@@ -7,6 +7,9 @@ on:
 jobs:
   release:
     runs-on: ubuntu-latest
+    outputs:
+      new_release_published: ${{ steps.sr.outputs.new_release_published }}
+      new_release_version:   ${{ steps.sr.outputs.new_release_version }}
     permissions:
       contents: write
       issues: write

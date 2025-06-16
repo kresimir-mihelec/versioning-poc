@@ -1,3 +1,10 @@
+# [2.1.0-stage.2](https://github.com/kresimir-mihelec/versioning-poc/compare/v2.1.0-stage.1...v2.1.0-stage.2) (2025-06-16)
+
+
+### Features
+
+* Add whatever ([11f29a3](https://github.com/kresimir-mihelec/versioning-poc/commit/11f29a3fce1837e1401730879259a013a25f87c9))
+
 # [2.1.0-stage.1](https://github.com/kresimir-mihelec/versioning-poc/compare/v2.0.1...v2.1.0-stage.1) (2025-06-16)
 
 

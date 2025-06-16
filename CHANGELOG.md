@@ -1,4 +1,4 @@
-# [1.2.0-stage.1](https://github.com/kresimir-mihelec/versioning-poc/compare/v1.1.0...v1.2.0-stage.1) (2025-06-02)
+# [1.2.0](https://github.com/kresimir-mihelec/versioning-poc/compare/v1.1.0...v1.2.0) (2025-06-16)
 
 
 ### Bug Fixes

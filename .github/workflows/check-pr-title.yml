@@ -1,15 +1,15 @@
-- name: Enforce Conventional-Commit prefix
-  env:
-    TITLE: ${{ github.event.pull_request.title }}
-  run: |
-    echo "PR title: '$TITLE'"
+name: Enforce Conventional-Commit prefix
+env:
+  TITLE: ${{ github.event.pull_request.title }}
+run: |
+  echo "PR title: '$TITLE'"
 
-    # regex must be in a var so () aren’t parsed by the shell
-    REGEX='^(build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test)(\([^)]+\))?!?: .+'
+  # regex must be in a var so () aren’t parsed by the shell
+  REGEX='^(build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test)(\([^)]+\))?!?: .+'
 
-    if [[ "$TITLE" =~ $REGEX ]]; then
-      echo "✅ title is Conventional-Commit compliant"
-    else
-      echo "::error ::Title must start with a Conventional-Commit prefix"
-      exit 1
-    fi
+  if [[ "$TITLE" =~ $REGEX ]]; then
+    echo "✅ title is Conventional-Commit compliant"
+  else
+    echo "::error ::Title must start with a Conventional-Commit prefix"
+    exit 1
+  fi
